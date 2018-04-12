@@ -19,6 +19,11 @@ namespace OpenshiftTestApp
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseLinuxTransport(options =>
+                {
+                    options.AioSend = true;
+                    options.AioReceive = true;
+                })
                 .UseStartup<Startup>()
                 .Build();
     }
